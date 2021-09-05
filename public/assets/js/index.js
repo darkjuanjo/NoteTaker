@@ -81,14 +81,13 @@ const handleNoteSave = () => {
 const handleNoteDelete = (e) => {
   // Prevents the click listener for the list from being called when the button inside of it is clicked
   e.stopPropagation();
-
+  console.log('clicked');
   const note = e.target;
   const noteId = JSON.parse(note.parentElement.getAttribute('data-note')).id;
 
   if (activeNote.id === noteId) {
     activeNote = {};
   }
-
   deleteNote(noteId).then(() => {
     getAndRenderNotes();
     renderActiveNote();
@@ -179,5 +178,4 @@ if (window.location.pathname === '/notes') {
   noteTitle.addEventListener('keyup', handleRenderSaveBtn);
   noteText.addEventListener('keyup', handleRenderSaveBtn);
 }
-
 getAndRenderNotes();
